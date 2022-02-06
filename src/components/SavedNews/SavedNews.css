@@ -1,0 +1,17 @@
+.savedNews {
+  width: 100%;
+  position: absolute;
+  padding-bottom: 80px;
+}
+
+@media screen and (max-width: 1024px) {
+  .savedArticles {
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .savedArticles {
+    width: calc(100% - 32px);
+  }
+}

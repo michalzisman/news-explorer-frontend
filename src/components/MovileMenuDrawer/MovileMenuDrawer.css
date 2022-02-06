@@ -1,0 +1,25 @@
+.mobileMenuDrawer {
+  height: 100%;
+  align-items: flex-start;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  min-height: 1300px;
+}
+
+.mobileMenuDrawer__dark {
+  align-items: flex-start;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background-color: var(--black);
+  min-height: 330px;
+}
+
+.mobileMenuDrawer__overlay {
+  background-color: black;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
