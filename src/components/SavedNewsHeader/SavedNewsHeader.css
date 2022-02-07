@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: left;
+  max-width: 1440px;
   width: calc(100% - 208px);
   margin: 120px auto 56px auto;
 }
@@ -23,15 +24,15 @@
   margin: 0 0 30px 0;
 }
 
-.savedNewsHeader_byKeywords,
-.savedNewsHeader_keywords {
+.savedNewsHeader__byKeywords,
+.savedNewsHeader__keywords {
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   margin: 0;
 }
 
-.savedNewsHeader_keywords {
+.savedNewsHeader__keywords {
   font-weight: 700;
 }
 

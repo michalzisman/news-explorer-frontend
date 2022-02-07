@@ -1,4 +1,4 @@
-.saveButton {
+.saveButton__saveImg {
   position: absolute;
   right: 24px;
   top: 24px;
@@ -7,7 +7,7 @@
   opacity: 0.5;
 }
 
-.savedButton {
+.saveButton__savedImg {
   position: absolute;
   right: 24px;
   top: 24px;
@@ -15,7 +15,7 @@
   transition: 0.3s;
 }
 
-.saveButton:hover {
+.saveButton__saveImg:hover {
   opacity: 1;
 }
 

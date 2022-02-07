@@ -4,7 +4,7 @@ function SearchForm() {
   }
 
   return (
-    <div className="searchForm">
+    <form className="searchForm">
       <input className="searchForm__input" placeholder="Enter topic" />
       <button
         type="button"
@@ -13,7 +13,7 @@ function SearchForm() {
       >
         <p className="searchForm__button-text">Search</p>
       </button>
-    </div>
+    </form>
   );
 }
 

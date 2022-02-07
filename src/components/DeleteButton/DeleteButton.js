@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import deleteButton from "../../images/delete_hover.png";
+import deleteButton from "../../images/delete_hover.svg";
 
 function DeleteButton(props) {
   const [isShown, setIsShown] = useState(false);
@@ -13,11 +13,11 @@ function DeleteButton(props) {
   }
 
   return (
-    <div className="deleteButton__content">
+    <div className="deleteButton">
       <img
         src={deleteButton}
         alt="Delete article"
-        className="deleteButton"
+        className="deleteButton__deleteImg"
         onClick={deleteCard}
         onMouseOver={showWarning}
         onMouseOut={showWarning}

@@ -12,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1440px;
   width: calc(100% - 208px);
   margin: 0 auto;
 }
@@ -64,7 +65,7 @@
   .footer {
     min-height: 176px;
     padding-bottom: 22px;
-    position: unset;
+    /* position: unset; */
   }
   .footer__wrapper {
     width: calc(100% - 32px);

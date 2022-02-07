@@ -1,4 +1,4 @@
-.header_nav {
+.header__nav {
   display: flex;
   height: 100%;
   align-items: center;
@@ -56,11 +56,11 @@
 }
 
 @media screen and (max-width: 600px) {
-  .header_nav {
+  .header__nav {
     display: none;
   }
 
-  .header_nav_mobile {
+  .header__nav_mobile {
     position: absolute;
     display: none;
     grid-gap: 22px;
@@ -70,7 +70,7 @@
     height: auto;
   }
 
-  .header_nav_mobile_open {
+  .header__nav_mobile_open {
     display: grid;
   }
 

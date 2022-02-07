@@ -1,4 +1,4 @@
-.deleteButton {
+.deleteButton__deleteImg {
   position: absolute;
   right: 24px;
   top: 24px;
@@ -7,7 +7,7 @@
   opacity: 0.5;
 }
 
-.deleteButton:hover {
+.deleteButton__deleteImg:hover {
   opacity: 1;
 }
 

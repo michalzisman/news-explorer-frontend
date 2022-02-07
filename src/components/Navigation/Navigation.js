@@ -37,13 +37,13 @@ function Navigation(props) {
   }
 
   return (
-    <div
+    <nav
       className={`${
         window.screen.width <= 600
-          ? `header_nav_mobile ${
-              props.mobileMenuIsOpen ? "header_nav_mobile_open" : ""
+          ? `header__nav_mobile ${
+              props.mobileMenuIsOpen ? "header__nav_mobile_open" : ""
             }`
-          : "header_nav"
+          : "header__nav"
       }`}
     >
       <button
@@ -97,7 +97,7 @@ function Navigation(props) {
           onClick={handleMenuClick}
         />
       </button>
-    </div>
+    </nav>
   );
 }
 

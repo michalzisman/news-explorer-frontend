@@ -10,12 +10,12 @@ function Footer() {
   }
 
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="footer__wrapper">
         <p className="footer__copyright">
           &copy; 2021 Supersite, Powered by News API
         </p>
-        <div className="footer__rightNav">
+        <nav className="footer__rightNav">
           <div className="footer__rightNav-text">
             <p onClick={handleMenuClick} className="footer__button">
               Home
@@ -47,9 +47,9 @@ function Footer() {
               <img src={Facebook} alt="Facebook" />
             </a>
           </div>
-        </div>
+        </nav>
       </div>
-    </div>
+    </footer>
   );
 }
 

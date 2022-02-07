@@ -16,47 +16,49 @@ function NewsCardList() {
 
   return (
     <div className="newsCardList">
-      {page === "/" ? (
-        <h2 className="newsCardList__title">Search results</h2>
-      ) : (
-        ""
-      )}
-      <div className="cards">
-        {page === "/"
-          ? cards.slice(0, 3).map((card) => {
-              return (
-                <NewsCard
-                  key={card.id}
-                  card={card}
-                  id={card.id}
-                  keyword={card.keyword}
-                  deleteCard={deleteCard}
-                />
-              );
-            })
-          : cards.map((card) => {
-              return (
-                <NewsCard
-                  key={card.id}
-                  card={card}
-                  id={card.id}
-                  keyword={card.keyword}
-                  deleteCard={deleteCard}
-                />
-              );
-            })}
+      <div className="newsCardList__cardsWrapper">
+        {page === "/" ? (
+          <h2 className="newsCardList__title">Search results</h2>
+        ) : (
+          ""
+        )}
+        <ul className="cards">
+          {page === "/"
+            ? cards.slice(0, 3).map((card) => {
+                return (
+                  <NewsCard
+                    key={card.id}
+                    card={card}
+                    id={card.id}
+                    keyword={card.keyword}
+                    deleteCard={deleteCard}
+                  />
+                );
+              })
+            : cards.map((card) => {
+                return (
+                  <NewsCard
+                    key={card.id}
+                    card={card}
+                    id={card.id}
+                    keyword={card.keyword}
+                    deleteCard={deleteCard}
+                  />
+                );
+              })}
+        </ul>
+        {page === "/" ? (
+          <button
+            type="button"
+            onClick={showMore}
+            className="newsCardList__showMore"
+          >
+            <p className="newsCardList__showMore-text">Show more</p>
+          </button>
+        ) : (
+          ""
+        )}
       </div>
-      {page === "/" ? (
-        <button
-          type="button"
-          onClick={showMore}
-          className="newsCardList__showMore"
-        >
-          <p className="newsCardList__showMore-text">Show more</p>
-        </button>
-      ) : (
-        ""
-      )}
     </div>
   );
 }

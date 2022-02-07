@@ -1,6 +1,6 @@
 import SaveButton from "../SaveButton/SaveButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
-import rectangle from "../../images/rectangle.png";
+import rectangle from "../../images/rectangle.svg";
 
 function NewsCard(props) {
   const page = window.location.pathname;
@@ -24,7 +24,7 @@ function NewsCard(props) {
       <img className="newsCard__image" src={card.image} alt={card.name} />
       <div className="newsCard__info">
         <p className="newsCard__date">{card.date}</p>
-        <p className="newsCard__title">{card.title}</p>
+        <h2 className="newsCard__title">{card.title}</h2>
         <p className="newsCard__text">{card.text}</p>
         <p className="newsCard__publisher">{card.publisher}</p>
       </div>

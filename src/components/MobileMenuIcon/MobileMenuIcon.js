@@ -1,6 +1,6 @@
 import icon from "../../images/mobile_menu_icon.png";
 import iconBlack from "../../images/mobile_menu_icon_black.png";
-import closeIcone from "../../images/close_menu.png";
+import closeIcone from "../../images/close_menu.svg";
 
 function MobileMenuIcon(props) {
   const page = window.location.pathname;

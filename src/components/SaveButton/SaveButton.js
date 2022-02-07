@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import saveButton from "../../images/save_hover.png";
-import saved from "../../images/saved.png";
+import saveButton from "../../images/save_hover.svg";
+import saved from "../../images/saved.svg";
 
 function SaveButton() {
   const [savedArticle, setSavedArticle] = useState(false);
@@ -16,19 +16,19 @@ function SaveButton() {
   }
 
   return (
-    <div className="saveButton__content">
+    <div className="saveButton">
       {savedArticle ? (
         <img
           src={saved}
           alt="Saved article"
-          className="savedButton"
+          className="saveButton__savedImg"
           onClick={saveArticle}
         />
       ) : (
         <img
           src={saveButton}
           alt="Save article"
-          className="saveButton"
+          className="saveButton__saveImg"
           onClick={saveArticle}
           onMouseOver={showWarning}
           onMouseOut={showWarning}
