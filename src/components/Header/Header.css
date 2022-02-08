@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  box-shadow: inset 0px -1px 0px var(--grey-light);
+  height: 80px;
+  width: 100%;
+  background: #ffffff00;
+  z-index: 2;
+  position: absolute;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  width: calc(100% - 208px);
+  margin: 0 auto;
+}
+
+.logo {
+  margin: 0;
+  cursor: pointer;
+  max-width: 200px;
+}
+
+.header__mobileMenuBg {
+  height: auto;
+  width: 100%;
+  background-color: var(--black);
+  position: absolute;
+}
+
+@media screen and (max-width: 1024px) {
+  .header__wrapper {
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .header__wrapper {
+    width: calc(100% - 32px);
+  }
+}

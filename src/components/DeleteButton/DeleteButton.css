@@ -1,0 +1,32 @@
+.deleteButton__deleteImg {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 0.5;
+}
+
+.deleteButton__deleteImg:hover {
+  opacity: 1;
+}
+
+.deleteButton__warning {
+  position: absolute;
+  right: 70px;
+  top: 23px;
+  display: flex;
+  flex-direction: revert;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  height: 40px;
+  padding: 1px 20px;
+}
+
+.deleteButton__bg-text {
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}

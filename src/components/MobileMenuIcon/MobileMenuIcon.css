@@ -1,0 +1,10 @@
+.MobileMenuIcon {
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .MobileMenuIcon {
+    display: block;
+  }
+}

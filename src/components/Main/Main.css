@@ -1,0 +1,78 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 576px;
+  background-image: url("../../images/splash.png");
+  background-size: cover;
+  background-position: 50% 0;
+}
+
+.search__banner {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  visibility: hidden;
+}
+
+.search__area {
+  position: absolute;
+  width: 608px;
+  text-align: left;
+}
+
+.search__title {
+  font-family: "Roboto Slab";
+  font-weight: normal;
+  font-size: 60px;
+  line-height: 64px;
+  color: white;
+  margin: 0 0 32px 0;
+}
+
+.search__subtitle {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: white;
+  margin: 0 0 88px 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .search__area {
+    margin-top: 90px;
+    width: 448px;
+  }
+
+  .search__title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .search__subtitle {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0 0 48px 0;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .search__area {
+    margin-top: 90px;
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .search__area {
+    width: calc(100% - 40px);
+    margin-top: 0;
+    top: 110px;
+  }
+
+  .search__subtitle {
+    margin: 0 0 122px 0;
+  }
+}
