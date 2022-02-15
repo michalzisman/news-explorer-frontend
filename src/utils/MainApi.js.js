@@ -75,7 +75,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: "http://localhost:3000", //https://api.final-project.students.nomoreparties.sbs
+  baseUrl: "https://api.final-project.students.nomoreparties.sbs", //http://localhost:3000
   headers: {
     "Access-Control-Allow-Origin": "*",
     authorization: `Bearer ${localStorage.token}`,
