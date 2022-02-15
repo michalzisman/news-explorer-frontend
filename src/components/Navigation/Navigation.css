@@ -25,6 +25,10 @@
   margin: 8px 0 0 0;
 }
 
+.header__button_theme_loggedOut {
+  width: 150px;
+}
+
 .header__button_selected {
   border-bottom: 3px solid var(--black);
 }
@@ -39,6 +43,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
+  width: 100%;
 }
 
 .header__button-text_white {

@@ -5,6 +5,10 @@ function Signup(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [hasError, setHasError] = useState(false);
+  const [hasEmailError, setHasEmailError] = useState(false);
+  const [hasPasswordError, setHasPasswordError] = useState(false);
+  const [hasNameError, setHasNameError] = useState(false);
 
   useEffect(() => {
     setEmail("");
@@ -14,17 +18,43 @@ function Signup(props) {
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
+    if (
+      !e.target.value.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      setHasEmailError(true);
+      setHasError(true);
+    } else {
+      setHasEmailError(false);
+      setHasError(false);
+    }
   }
 
   function handlePasswordChange(e) {
     setPassword(e.target.value);
+    if (!e.target.value) {
+      setHasPasswordError(true);
+      setHasError(true);
+    } else {
+      setHasPasswordError(false);
+      setHasError(false);
+    }
   }
 
   function handleUsernameChange(e) {
     setUsername(e.target.value);
+    if (!e.target.value) {
+      setHasNameError(true);
+      setHasError(true);
+    } else {
+      setHasNameError(false);
+      setHasError(false);
+    }
   }
 
-  function handleSignUp(email, password, username) {
+  function handleSignUp(e) {
+    e.preventDefault();
     props.handleSignUp(email, password, username);
   }
 
@@ -37,7 +67,9 @@ function Signup(props) {
       switchText="Sign in"
       handleSubmit={handleSignUp}
       handleSwitch={props.handleSwitch}
-      data={(email, password, username)}
+      data={{ email, password, username }}
+      hasError={hasError}
+      requestError={props.requestError}
     >
       <label className="form__label">
         Email
@@ -51,7 +83,11 @@ function Signup(props) {
           required
           noValidate
         />
-        <span className="form__input-error form__input-error_active email-input-error">
+        <span
+          className={`form__input-error ${
+            hasEmailError ? "form__input-error_active email-input-error" : ""
+          }`}
+        >
           Invalid email address
         </span>
       </label>
@@ -67,9 +103,16 @@ function Signup(props) {
           placeholder="Enter password"
           autoComplete=""
           required
+          minLength="8"
           noValidate
         />
-        <span className="form__input-error form__input-error_active password-input-error">
+        <span
+          className={`form__input-error ${
+            hasPasswordError
+              ? "form__input-error_active password-input-error"
+              : ""
+          }`}
+        >
           Invalid password
         </span>
       </label>
@@ -83,9 +126,15 @@ function Signup(props) {
           placeholder="Enter your username"
           autoComplete=""
           required
+          minLength="2"
+          maxLength="30"
           noValidate
         />
-        <span className="form__input-error form__input-error_active username-input-error">
+        <span
+          className={`form__input-error ${
+            hasNameError ? "form__input-error_active username-input-error" : ""
+          } `}
+        >
           Invalid username
         </span>
       </label>

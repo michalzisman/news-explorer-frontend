@@ -26,6 +26,25 @@
   transition: 0.3s;
 }
 
+.searchForm__input-error {
+  display: none;
+  color: var(--red);
+  font-family: "Inter";
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 15px;
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  left: 15px;
+  text-align: left;
+  margin: 0;
+}
+
+.searchForm__input-error_active {
+  display: inline;
+}
+
 .searchForm__button:hover {
   background-color: #347eff;
 }
@@ -71,5 +90,9 @@
     position: unset;
     height: 56px;
     width: auto;
+  }
+
+  .searchForm__input-error {
+    top: 140px;
   }
 }

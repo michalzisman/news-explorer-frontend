@@ -4,10 +4,6 @@ import deleteButton from "../../images/delete_hover.svg";
 function DeleteButton(props) {
   const [isShown, setIsShown] = useState(false);
 
-  function deleteCard() {
-    props.deleteCard(props.id);
-  }
-
   function showWarning() {
     setIsShown(!isShown);
   }
@@ -18,7 +14,7 @@ function DeleteButton(props) {
         src={deleteButton}
         alt="Delete article"
         className="deleteButton__deleteImg"
-        onClick={deleteCard}
+        onClick={props.deleteCard}
         onMouseOver={showWarning}
         onMouseOut={showWarning}
       />
