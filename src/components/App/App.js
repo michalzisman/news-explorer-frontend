@@ -12,6 +12,7 @@ import MobileMenuDrawer from "../MovileMenuDrawer/MobileMenuDrawer";
 import SignIn from "../SignIn/SignIn";
 import Signup from "../Signup/Signup";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const history = useNavigate();
@@ -54,6 +55,13 @@ function App() {
         });
     }
   }, [token]);
+
+  useEffect(() => {
+    if (window.history.state.prevUrl) {
+      history("/");
+      setIsSignInPopup(true);
+    }
+  }, []);
 
   const handleEscKey = useCallback((event) => {
     if (event.key === "Escape") {
@@ -251,16 +259,20 @@ function App() {
         ></InfoTooltip>
         <Routes>
           <Route
-            path="saved-news"
+            path="/saved-news"
             element={
-              <SavedNews
-                savedArticles={savedArticles}
-                keywords={savedKeywords}
-                userName={userName}
-                deleteArticle={deleteArticle}
-                getSavedArticles={getSavedArticles}
-                getSavedKeywords={getSavedKeywords}
-              />
+              <ProtectedRoute token={token}>
+                {currentUser && (
+                  <SavedNews
+                    savedArticles={savedArticles}
+                    keywords={savedKeywords}
+                    userName={userName}
+                    deleteArticle={deleteArticle}
+                    getSavedArticles={getSavedArticles}
+                    getSavedKeywords={getSavedKeywords}
+                  />
+                )}
+              </ProtectedRoute>
             }
           />
           <Route
