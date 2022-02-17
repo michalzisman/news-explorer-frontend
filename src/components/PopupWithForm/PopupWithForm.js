@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+
 function PopupWithForm(props) {
   const {
     onClose,
@@ -8,7 +10,17 @@ function PopupWithForm(props) {
     handleSubmit,
     handleSwitch,
     data,
+    hasError,
+    requestError,
   } = props;
+
+  const [dataMissing, setDataMissing] = useState(false);
+
+  useEffect(() => {
+    if (data) {
+      setDataMissing(Object.values(data).some((x) => x === null || x === ""));
+    }
+  }, [data]);
 
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
@@ -24,10 +36,19 @@ function PopupWithForm(props) {
           <h2 className="form__heading">{title}</h2>
           <fieldset className="form__fieldset">
             {props.children}{" "}
+            <p
+              className={`form__apiError 
+              ${title === "Sign up" ? "form__apiError_theme_signup" : ""}
+              ${requestError ? "form__apiError_active" : ""}`}
+            >
+              An error occured.
+            </p>
             <button
               type="submit"
               className={`${
-                data ? "form__submit form__submit_Active" : "form__submit"
+                !dataMissing && !hasError
+                  ? "form__submit form__submit_Active"
+                  : "form__submit"
               }`}
             >
               {buttonText}

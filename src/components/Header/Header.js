@@ -46,6 +46,8 @@ function Header(props) {
           mobileMenuIsOpen={mobileMenuIsOpen}
           openSignInPopup={props.openSignInPopup}
           signOut={props.signOut}
+          userName={props.userName}
+          isLoggedIn={props.isLoggedIn}
         />
         <MobileMenuIcon
           setOpenMenu={setOpenMenu}

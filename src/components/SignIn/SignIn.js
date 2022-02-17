@@ -4,6 +4,9 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hasError, setHasError] = useState(false);
+  const [hasEmailError, setHasEmailError] = useState(false);
+  const [hasPasswordError, setHasPasswordError] = useState(false);
 
   useEffect(() => {
     setEmail("");
@@ -12,14 +15,33 @@ function SignIn(props) {
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
+    if (
+      !e.target.value.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      setHasEmailError(true);
+      setHasError(true);
+    } else {
+      setHasEmailError(false);
+      setHasError(false);
+    }
   }
 
   function handlePasswordChange(e) {
     setPassword(e.target.value);
+    if (!e.target.value) {
+      setHasPasswordError(true);
+      setHasError(true);
+    } else {
+      setHasPasswordError(false);
+      setHasError(false);
+    }
   }
 
-  function handleSignIn(email, password) {
-    props.handleSignin(email, password);
+  function handleSignIn(e) {
+    e.preventDefault();
+    props.handleSignIn(email, password);
   }
 
   return (
@@ -31,7 +53,9 @@ function SignIn(props) {
       switchText="Sign up"
       handleSubmit={handleSignIn}
       handleSwitch={props.handleSwitch}
-      data={(email, password)}
+      data={{ email, password }}
+      hasError={hasError}
+      requestError={props.requestError}
     >
       <label className="form__label">
         Email
@@ -45,7 +69,11 @@ function SignIn(props) {
           required
           noValidate
         />
-        <span className="form__input-error form__input-error_active email-input-error">
+        <span
+          className={`form__input-error ${
+            hasEmailError ? "form__input-error_active email-input-error" : ""
+          }`}
+        >
           Invalid email address
         </span>
       </label>
@@ -63,7 +91,13 @@ function SignIn(props) {
           required
           noValidate
         />
-        <span className="form__input-error form__input-error_active password-input-error">
+        <span
+          className={`form__input-error ${
+            hasPasswordError
+              ? "form__input-error_active password-input-error"
+              : ""
+          }`}
+        >
           Invalid password
         </span>
       </label>

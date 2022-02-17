@@ -1,3 +1,12 @@
+# news-explorer-frontend
+
+- A link to the website:
+  www.final-project.students.nomoreparties.sbs
+
+- This app is meant for searching and saving latest news by keywords.
+
+- The app was build with React along with some libraries to make life easier!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

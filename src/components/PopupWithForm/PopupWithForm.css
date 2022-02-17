@@ -153,6 +153,27 @@
   margin: 0;
 }
 
+.form__apiError {
+  display: none;
+  color: var(--red);
+  font-family: "Inter";
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  position: absolute;
+  margin: 0;
+  top: 170px;
+  width: 100%;
+}
+
+.form__apiError_theme_signup {
+  top: 265px;
+}
+
+.form__apiError_active {
+  display: inline;
+}
+
 .form__submit_Active {
   cursor: pointer;
   background: var(--blue);

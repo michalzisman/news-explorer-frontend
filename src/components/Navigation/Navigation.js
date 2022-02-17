@@ -7,7 +7,7 @@ function Navigation(props) {
   const homeText = "Home";
   const savedText = "Saved Articles";
   const page = window.location.pathname;
-  const user = props.user ? props.user : "Sign in";
+  // const user = props.userName ? props.userName : "Sign in";
   const [exit, setExit] = useState(exitBlack);
 
   useEffect(() => {
@@ -28,11 +28,10 @@ function Navigation(props) {
       history("/");
     } else if (event.target.textContent === savedText) {
       history("/saved-news");
-    } else if (event.target.textContent === user || event.target.alt) {
-      // If button is Sign in, open popup
+    } else if (event.target.textContent === "Sign in" || event.target.alt) {
       props.openSignInPopup();
-      // If button is a user's name, log out user
-      // props.signOut();
+    } else {
+      props.signOut();
     }
   }
 
@@ -63,11 +62,29 @@ function Navigation(props) {
           {homeText}
         </p>
       </button>
+      {props.isLoggedIn && (
+        <button
+          type="button"
+          onClick={handleMenuClick}
+          className={`header__button ${
+            page === "/saved-news" ? "header__button_selected" : ""
+          }`}
+        >
+          <p
+            className={`header__button-text ${
+              page === "/" ? "header__button-text_white" : ""
+            }`}
+          >
+            {savedText}
+          </p>
+        </button>
+      )}
+
       <button
         type="button"
         onClick={handleMenuClick}
         className={`header__button ${
-          page === "/saved-news" ? "header__button_selected" : ""
+          props.userName === "" ? "header__button_theme_loggedOut" : ""
         }`}
       >
         <p
@@ -75,27 +92,16 @@ function Navigation(props) {
             page === "/" ? "header__button-text_white" : ""
           }`}
         >
-          {savedText}
+          {props.userName !== "" ? props.userName : "Sign in"}
         </p>
-      </button>
-      <button
-        type="button"
-        onClick={handleMenuClick}
-        className="header__button"
-      >
-        <p
-          className={`header__button-text ${
-            page === "/" ? "header__button-text_white" : ""
-          }`}
-        >
-          {user}
-        </p>
-        <img
-          src={exit}
-          alt="logout"
-          className="header__button-logout"
-          onClick={handleMenuClick}
-        />
+        {props.userName !== "" && (
+          <img
+            src={exit}
+            alt="logout"
+            className="header__button-logout"
+            onClick={handleMenuClick}
+          />
+        )}
       </button>
     </nav>
   );
