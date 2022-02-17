@@ -18,7 +18,7 @@ function SaveButton(props) {
           className={
             props.isLiked ? "saveButton__savedImg" : "saveButton__saveImg"
           }
-          onClick={props.handleSaveArticle}
+          onClick={props.isLiked ? props.deleteCard : props.handleSaveArticle}
         />
       ) : (
         <>

@@ -1,16 +1,7 @@
-import React, { useEffect } from "react";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import NewsCardList from "../NewsCardList/NewsCardList";
 
 function SavedNews(props) {
-  useEffect(() => {
-    props.getSavedArticles();
-  }, []);
-
-  useEffect(() => {
-    props.getSavedKeywords();
-  }, [props.savedArticles]);
-
   return (
     <div className="savedNews">
       <SavedNewsHeader

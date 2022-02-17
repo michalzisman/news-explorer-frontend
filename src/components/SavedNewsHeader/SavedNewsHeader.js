@@ -31,34 +31,6 @@ function SavedNewsHeader(props) {
           </span>
         </p>
       )}
-      {/* {props.savedArticles.length === 1 && (
-        <p className="savedNewsHeader__byKeywords">
-          By keyword:{" "}
-          <span className="savedNewsHeader__keywords">
-            {props.savedArticles[0].keyword}
-          </span>
-        </p>
-      )}
-      {props.savedArticles.length === 2 && (
-        <p className="savedNewsHeader__byKeywords">
-          {props.savedArticles[0].keyword === props.savedArticles[1].keyword ? (
-            <>
-              By keyword:{" "}
-              <span className="savedNewsHeader__keywords">
-                {props.savedArticles[0].keyword}
-              </span>
-            </>
-          ) : (
-            <>
-              By keywords:{" "}
-              <span className="savedNewsHeader__keywords">
-                {props.savedArticles[0].keyword} and{" "}
-                {props.savedArticles[1].keyword}
-              </span>
-            </>
-          )}
-        </p>
-      )} */}
     </div>
   );
 }

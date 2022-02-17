@@ -11,8 +11,9 @@ function NewsCard(props) {
   useEffect(() => {
     if (props.markedAsSaved && props.markedAsSaved.length > 0) {
       setIsLiked(props.markedAsSaved.some((i) => i === props.id));
+      console.log(props.markedAsSaved, props.markedToDelete);
     }
-  }, [props.markedAsSaved]);
+  }, [props.markedToDelete]);
 
   useEffect(() => {
     const date = props.card.date
@@ -30,7 +31,15 @@ function NewsCard(props) {
   const { card } = props;
 
   function deleteCard() {
-    props.deleteCard(card._id, card.owner);
+    if (!card._id) {
+      const articleId = props.savedArticles.filter(
+        (article) => article.title === card.title
+      );
+      setIsLiked(false);
+      props.deleteCard(articleId[0]._id, articleId[0].owner, props.id);
+    } else {
+      props.deleteCard(card._id, card.owner);
+    }
   }
 
   function handleSaveArticle() {
@@ -54,6 +63,7 @@ function NewsCard(props) {
           isLoggedIn={props.isLoggedIn}
           isLiked={isLiked}
           handleSaveArticle={handleSaveArticle}
+          deleteCard={deleteCard}
         />
       ) : (
         <DeleteButton deleteCard={deleteCard} />

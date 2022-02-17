@@ -46,7 +46,9 @@ function Main(props) {
             keyword={props.keyword}
             isLoggedIn={props.isLoggedIn}
             markedAsSaved={props.markedAsSaved}
-            // isSavedArticle={props.isSavedArticle}
+            deleteArticle={props.deleteArticle}
+            savedArticles={props.savedArticles}
+            markedToDelete={props.markedToDelete}
           />
         )}
       {props.isPreloader && <Preloader />}

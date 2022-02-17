@@ -1,7 +1,4 @@
-const customFetch = (url, headers) =>
-  fetch(url, headers).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`)
-  );
+import { customFetch } from "../utils/MainApi";
 
 class NewsApi {
   constructor({ baseUrl, headers, apiKey }) {
@@ -21,8 +18,7 @@ class NewsApi {
 
 const newsApi = new NewsApi({
   apiKey: "98667403e4664ed7ba9c5970d9f861da",
-  // baseUrl for deployment: https://nomoreparties.co/news/v2/everything
-  baseUrl: "https://newsapi.org/v2/everything", //&apiKey=98667403e4664ed7ba9c5970d9f861da
+  baseUrl: "https://newsapi.org/v2/everything",
   headers: {
     "Access-Control-Allow-Origin": "*",
     authorization: `Bearer ${localStorage.token}`,

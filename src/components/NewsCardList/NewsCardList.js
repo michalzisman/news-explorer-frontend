@@ -26,8 +26,8 @@ function NewsCardList(props) {
     setStartIndex(newIndex);
   }
 
-  function deleteCard(cardId, ownerId) {
-    props.deleteArticle(cardId, ownerId);
+  function deleteCard(cardId, ownerId, id) {
+    props.deleteArticle(cardId, ownerId, id);
   }
 
   return (
@@ -50,6 +50,8 @@ function NewsCardList(props) {
                         isLoggedIn={props.isLoggedIn}
                         handleSaveArticle={props.handleSaveArticle}
                         markedAsSaved={props.markedAsSaved}
+                        savedArticles={props.savedArticles}
+                        markedToDelete={props.markedToDelete}
                       />
                     );
                   })}

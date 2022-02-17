@@ -2,19 +2,19 @@ import React, { useState } from "react";
 
 function SearchForm(props) {
   const [searchWord, setSearchWord] = useState("");
+  const [searchError, setSearchError] = useState(false);
 
   function handleSearchWordrdChange(e) {
+    setSearchError(false);
     setSearchWord(e.target.value);
   }
 
   function handleSearch(e) {
+    e.preventDefault();
     if (searchWord) {
-      e.preventDefault();
       props.handleNewsSeasrch(searchWord);
     } else {
-      document
-        .querySelector(".searchForm__input-error")
-        .classList.add("searchForm__input-error_active");
+      setSearchError(true);
     }
   }
 
@@ -33,7 +33,13 @@ function SearchForm(props) {
       >
         <p className="searchForm__button-text">Search</p>
       </button>
-      <p className="searchForm__input-error">Please enter a keyword</p>
+      <p
+        className={`searchForm__input-error ${
+          searchError ? "searchForm__input-error_active" : ""
+        }`}
+      >
+        Please enter a keyword
+      </p>
     </form>
   );
 }

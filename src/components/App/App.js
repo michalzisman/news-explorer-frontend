@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
-import newsApi from "../../utils/NewsApi.js";
-import mainApi from "../../utils/MainApi.js";
+import newsApi from "../../utils/NewsApi";
+import mainApi from "../../utils/MainApi";
 import { CurrentUserContext } from "../CurrentUserContext/CurrentUserContext";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -33,6 +33,7 @@ function App() {
     JSON.parse(localStorage.getItem("savedKeywords"))
   );
   const [markedAsSaved, setMarkedAsSaved] = useState([]);
+  const [markedToDelete, setMarkedToDelete] = useState([]);
   const [requestError, setRequestError] = useState(false);
   const [articles, setArticles] = useState(
     JSON.parse(localStorage.getItem("articles"))
@@ -55,6 +56,39 @@ function App() {
         });
     }
   }, [token]);
+
+  useEffect(() => {
+    if (currentUser) {
+      mainApi
+        .getSavedArticles()
+        .then((res) => {
+          setSavedArticles(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [currentUser, markedToDelete]);
+
+  useEffect(() => {
+    const arr = [];
+    if (savedArticles.length === 0) {
+      setSavedKeywords([]);
+    } else {
+      let keywordsObj = {};
+      for (let i = 0; i < savedArticles.length; i++) {
+        if (!keywordsObj.hasOwnProperty(savedArticles[i].keyword)) {
+          arr.push(savedArticles[i].keyword);
+          keywordsObj[savedArticles[i].keyword] = savedArticles[i].keyword;
+        }
+      }
+      setSavedKeywords([...arr]);
+    }
+  }, [savedArticles]);
+
+  useEffect(() => {
+    setMarkedToDelete([...markedAsSaved]);
+  }, [markedAsSaved]);
 
   useEffect(() => {
     if (window.history.state.prevUrl) {
@@ -87,19 +121,6 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }
-
-  function getSavedKeywords() {
-    let keywordsObj = {};
-    let keywords = [];
-    for (let i = 0; i < savedArticles.length; i++) {
-      if (!keywordsObj.hasOwnProperty(savedArticles[i].keyword)) {
-        keywords.push(savedArticles[i].keyword);
-        keywordsObj[savedArticles[i].keyword] = savedArticles[i].keyword;
-      }
-    }
-    localStorage.setItem("savedKeywords", JSON.stringify(keywords));
-    setSavedKeywords(JSON.parse(localStorage.getItem("savedKeywords")));
   }
 
   function openMobileMenuDrawer() {
@@ -207,23 +228,33 @@ function App() {
       .saveArticle(keyword, title, description, date, source, link, image)
       .then((res) => {
         setMarkedAsSaved([...markedAsSaved, id]);
+        setMarkedToDelete([...markedToDelete, res.data.title]);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  function deleteArticle(articleId, ownerId) {
+  function deleteArticle(articleId, ownerId, id) {
     mainApi
       .deleteArticle(articleId, ownerId, currentUser._id)
       .then((res) => {
         setSavedArticles(
           savedArticles.filter((article) => article._id !== res.data._id)
         );
+        if (id !== undefined) {
+          removeMarked(id);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  function removeMarked(id) {
+    console.log("Deleted article");
+    markedAsSaved.splice(id, 1);
+    setMarkedAsSaved([...markedAsSaved]);
   }
 
   return (
@@ -269,7 +300,6 @@ function App() {
                     userName={userName}
                     deleteArticle={deleteArticle}
                     getSavedArticles={getSavedArticles}
-                    getSavedKeywords={getSavedKeywords}
                   />
                 )}
               </ProtectedRoute>
@@ -281,12 +311,15 @@ function App() {
               <Main
                 handleNewsSeasrch={handleNewsSeasrch}
                 handleSaveArticle={handleSaveArticle}
+                deleteArticle={deleteArticle}
                 articles={articles}
                 isPreloader={isPreloader}
                 isSearchError={isSearchError}
                 keyword={keyword}
                 isLoggedIn={isLoggedIn}
                 markedAsSaved={markedAsSaved}
+                savedArticles={savedArticles}
+                markedToDelete={markedToDelete}
               />
             }
           />
